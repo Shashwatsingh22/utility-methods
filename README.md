@@ -4,23 +4,23 @@ This repository is a collection of reusable Kotlin utility classes designed to s
 
 ## Functionalities Offered:
 
-## 1. Image Processing (ImageUtils.kt)
+#### 1. Image Processing (ImageUtils.kt)
 
 - Offers functionalities for image compression and decompression while maintaining desired constraints.
 - Optimizes image storage and delivery, balancing quality and file size.
 
-## 2. File Processing (SheetUtils.kt)
+#### 2. File Processing (SheetUtils.kt)
 
 - Enables processing CSV, Excel, and DBF files into structured objects mapped to your custom classes.
 - Simplifies data ingestion and integration tasks within your applications.
 
-## 3. JSON Parsing (JsonParser.kt)
+#### 3. JSON Parsing (JsonParser.kt)
 
 - Provides efficient parsing of large JSON files leveraging producer-consumer concepts.
 - Processes data in chunks to handle memory limitations for massive files.
 - Focuses on extracting specific data based on a provided key.
 
-## 4. PDF to PPTX Conversion (ConvertFromPDFtoPPTX.kt)
+#### 4. PDF to PPTX Conversion (ConvertFromPDFtoPPTX.kt)
 
 - Converts PDF files into presentation slides (PPTX format).
 - Renders each PDF page as an image and inserts those images into a new presentation.
@@ -91,9 +91,19 @@ val resizedImage = ImageUtils.resizeImage(originalImageFile, 500.0, 0.8f, 1024)
  Please refer to ConvertFromPDFToPPTX Readme for detailed usage
 </details>
 
-### Testing:
+## Testing:
 
 Each utility class (`ImageUtils.kt`, `SheetUtils.kt`, `JsonParser.kt`, `ConvertFromPDFtoPPTX.kt`) comes with accompanying test files to ensure their proper functionality.
 
-- Execute these tests using your preferred testing framework (JUnit, Kotest) to verify the code's correctness.
+## Contributing
+
+We welcome your contributions to this project! Here are some ways you can get involved:
+
+- **Report issues:** If you encounter any bugs or unexpected behavior, please file an issue on the repository's issue tracker.
+  
+- **Suggest improvements:** If you have ideas for new features or enhancements, feel free to create an issue or pull request.
+  
+- **Contribute code:** If you're a Kotlin developer, you can submit pull requests with your code contributions. Make sure to follow the coding conventions and style guide of the project.
+  
+- **Spread the word:** Let other developers know about this collection of utility classes and encourage them to use and contribute.
 
