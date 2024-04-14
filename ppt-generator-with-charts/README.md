@@ -3,15 +3,10 @@
 ### Problem Statement
 As a Relationship Manager, you often need to provide clients with monthly summaries of their investments or prepare presentations for pitches. It's crucial to have a solution that can quickly generate PowerPoint presentations with accurate data sourced from CAS or other vendors. These presentations should include well-designed charts and precise numbers to effectively convey information to clients.
 
-#### Example
-* **_Index Slide_** ![Index Slide](images/examples/index-slide.png)
-* **_OverAll Portfolio Analysis_** ![Overall Portfolio Analysis](images/examples/overall-portfolio-analysis.png)
-* **_OverAll Equity Holdings_** ![Overall Equity Holding](images/examples/overall-equity-holding-table.png)
-
 ## Usage:
 Provide Json Input to Our Method
 ```kotlin
-fun generatePPT_forPopulatingProspectHNIPPT() {
+fun generatePPT() {
     val pptParametersJson = IOUtils.toString(ClassPathResource("ppt_template/pptTemplate.json").inputStream, StandardCharsets.UTF_8)
     val outputFile = PPTGenerator.generatePPT(
       outputFileName = "john_doe_prospect",
