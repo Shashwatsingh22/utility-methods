@@ -5,6 +5,7 @@ As a Relationship Manager, you often need to provide clients with monthly summar
 
 ## Usage:
 Provide Json Input to Our Method
+
 ```kotlin
 fun generatePPT() {
     val pptParametersJson = IOUtils.toString(ClassPathResource("ppt_template/pptTemplate.json").inputStream, StandardCharsets.UTF_8)
@@ -19,6 +20,9 @@ fun generatePPT() {
 
 
 * Example 1
+<details>
+<summary> Click Here to Check JSON for given example </summary>
+
 ```json
 {
   "slideIndex": 21,
@@ -68,10 +72,16 @@ fun generatePPT() {
   ]
 }
 ```
+</details>
+
 Output 
 **_Category Distribution Slide_** ![Category Distribution Slide](images/outputs/categoryDistribution.png)
 
 * Example 2
+<details>
+
+<summary> Click Here to Check JSON for given example </summary>
+
 ```json
 {
     "slideIndex": 29,
@@ -1508,4 +1518,6 @@ Output
     ]
   }
 ```
+</details>
+
 **_Category Wise MF Analysis Slide_** ![Category Wise MF Analysis Slide](images/outputs/CategoryWiseAnalysis.png)
