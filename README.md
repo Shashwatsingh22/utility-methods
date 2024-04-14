@@ -20,11 +20,9 @@ This repository is a collection of reusable Kotlin utility classes designed to s
 - Processes data in chunks to handle memory limitations for massive files.
 - Focuses on extracting specific data based on a provided key.
 
-#### 4. PDF to PPTX Conversion (ConvertFromPDFtoPPTX.kt)
+#### 4. Power Point Generator (PPTGenerator.kt)
 
-- Converts PDF files into presentation slides (PPTX format).
-- Renders each PDF page as an image and inserts those images into a new presentation.
-
+- Create Dynamic PPT by the help of json by keeping an sample PPT format (PPTX format).
 
 ## Usage:
 
@@ -87,13 +85,13 @@ val resizedImage = ImageUtils.resizeImage(originalImageFile, 500.0, 0.8f, 1024)
 ```
 - #### JsonParser
  Please refer to JSONParser Readme for detailed usage
-- #### ConvertFromPDFToPPTX
- Please refer to ConvertFromPDFToPPTX Readme for detailed usage
+- #### PPTGenerator
+ Please refer to PPT generator Readme for details usage
 </details>
 
 ## Testing:
 
-Each utility class (`ImageUtils.kt`, `SheetUtils.kt`, `JsonParser.kt`, `ConvertFromPDFtoPPTX.kt`) comes with accompanying test files to ensure their proper functionality.
+Each utility class (`ImageUtils.kt`, `SheetUtils.kt`, `JsonParser.kt`, `PPTGenerator.kt`) comes with accompanying test files to ensure their proper functionality.
 
 ## Contributing
 
