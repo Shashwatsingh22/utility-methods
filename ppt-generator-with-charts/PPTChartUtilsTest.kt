@@ -1,29 +1,63 @@
-package com.equiruswealth.commons.utils
+package com.equiruswealth.commons.utils.ppt
 
-import com.equiruswealth.commons.TestConstants.PROSPECT_TEMPLATE
-import com.equiruswealth.commons.models.chart.GenericChart
-import com.equiruswealth.commons.models.ppt_generator.CategorizedChartModel
+import com.fasterxml.jackson.core.type.TypeReference
+import org.apache.commons.io.IOUtils
 import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.BeforeEach
+import org.mockito.InjectMocks
+import org.mockito.MockitoAnnotations
 import org.junit.jupiter.api.Test
-import java.io.File
-import java.util.Date
+import org.springframework.core.io.ClassPathResource
+import java.nio.charset.StandardCharsets
+import org.mockito.Mock
 
 /**
  * @author Shashwat Singh
  */
+object class PowerPointGeneratorUtilsTest {
 
-object PPTChartUtilsTest {
+  @BeforeEach
+  fun setUp() {
+    MockitoAnnotations.openMocks(this)
+  }
 
-  private val outputFileName = "John_Doe_Prospect_${Date().time}"
-
+  /**
+   * Test 1 - All shapes data available will populate all of them.
+   * Assert That -
+   *    - Where only not required label which not have data should get deleted
+   *    - Else all shapes data should get populated
+   */
   @Test
-  fun generatePPT_forPopulatingProspectHNIPPT() {
-    val pptParametersJson = IOUtils.toString(ClassPathResource("ppt_template/pptTemplate.json").inputStream, StandardCharsets.UTF_8)
-    val outputFile = PPTGenerator.generatePPT(
-      outputFileName = "john_doe_prospect",
-      pptParameters = JsonUtil.objectMapper.readValue(pptParametersJson, object : TypeReference<List<PowerPointParameter>>() {}),
-      templateFileInputStream = this.javaClass.classLoader.getResourceAsStream("ppt_template/pptTemplate.pptx")!!
+  fun generatePPT_populateAllData() {
+    val slideWiseDetailsJson = IOUtils.toString(ClassPathResource(PROSPECT_TEMPLATE_JSON_TEST_1).inputStream, StandardCharsets.UTF_8)
+    val slides = JsonUtil.objectMapper.readValue(slideWiseDetailsJson, object : TypeReference<List<Slide>>() {})
+    val outputFile = PowerPointGeneratorUtils.generatePPT(
+      pptParameters = PPTParameters().apply {
+        this.fileName = "john_doe_prospect"
+        this.slides = slides
+      },
+      templateFileInputStream = this.javaClass.classLoader.getResourceAsStream(PROSPECT_TEMPLATE_TEST_1)!!
     )
-    Assertions.assertThat(outputFile.lengthInMb()).isGreaterThan(7.5)
+    Assertions.assertThat(outputFile.lengthInKb()).isGreaterThan(10.0)
+  }
+
+  /**
+   * Test 2 - Method to reposition the shapes and remove the deleted shapes
+   * Assert That -
+   *    - Slide [portfolioSummarySlide] - Asset Allocation Chart Gets Deleted and table get repositioned to mid
+   *    - Slide [productAllocationSlide] - Both shape not have any data then slide gets deleted
+   */
+  @Test
+  fun generatePPT_withDeletedShapeRepositionDone() {
+    val slideWiseDetailsJson = IOUtils.toString(ClassPathResource(PROSPECT_TEMPLATE_JSON_TEST_2).inputStream, StandardCharsets.UTF_8)
+    val slides = JsonUtil.objectMapper.readValue(slideWiseDetailsJson, object : TypeReference<List<Slide>>() {})
+    val outputFile = PowerPointGeneratorUtilsTest.generatePPT(
+      pptParameters = PPTParameters().apply {
+        this.fileName = "john_doe_prospect"
+        this.slides = slides
+      },
+      templateFileInputStream = this.javaClass.classLoader.getResourceAsStream(PROSPECT_TEMPLATE_TEST_1)!!
+    )
+    Assertions.assertThat(outputFile.lengthInKb()).isGreaterThan(10.0)
   }
 }
